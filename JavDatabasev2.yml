@@ -14,10 +14,10 @@ xPathScrapers:
       $videoItem: /html/body/div[@id="page"]/div[@id="content"]/div[@id="primary"]/main/div[@class="entry-content"]/div[@class="movietable"]/div[@class="row"]/div[2]
       $videoDetailsItem: /html/body/div[@id="page"]/div[@id="content"]/div[@id="primary"]/main/div[@class="entry-content"]/div[@class="movietable"]/div[3]
     scene:
-      Title: &title $videoItem/p[b[text()="Title: "]]/text()
-      Date: &date $videoItem/p[b[text()="Release Date: "]]/text()
+      Title: $videoItem/p[b[text()="Title: "]]/text()
+      Date: $videoItem/p[b[text()="Release Date: "]]/text()
       Director: $videoItem/p/span[../b[text() = "Director: "]]/a /html/body/div[1]/div/div/main/div/div[1]/table/tbody/tr/td/div[1]/a/img
-      Image: &image $videoPosterItem
+      Image: $videoPosterItem
       Studio:
         Name: $videoPosterItem/p/span[../b[text() = "Studio: "]]/a/@text
         URL: $videoPosterItem/p/span[../b[text() = "Studio: "]]/a/@href
