@@ -12,17 +12,21 @@ xPathScrapers:
     common:
       $videoPosterItem: /html/body/div[@id="page"]/div[@id="content"]/div[@id="primary"]/main/div[@class="entry-content"]/table/tbody/tr/td/div[@id="poster-container"]/a/img/@src
       $videoItem: /html/body/div[@id="page"]/div[@id="content"]/div[@id="primary"]/main/div[@class="entry-content"]/div[@class="movietable"]/div[@class="row"]/div[2]
+      $videoDetailsItem: /html/body/div[@id="page"]/div[@id="content"]/div[@id="primary"]/main/div[@class="entry-content"]/div[@class="movietable"]/div[3]
     scene:
       Title: &title $videoItem/p[b[text()="Title: "]]/text()
       Date: &date $videoItem/p[b[text()="Release Date: "]]/text()
       Director: $videoItem/p/span[../b[text() = "Director: "]]/a /html/body/div[1]/div/div/main/div/div[1]/table/tbody/tr/td/div[1]/a/img
       Image: &image $videoPosterItem
-      Studio: 
+      Studio:
         Name: $videoPosterItem/p/span[../b[text() = "Studio: "]]/a/@text
         URL: $videoPosterItem/p/span[../b[text() = "Studio: "]]/a/@href
       Code: $videoItem/p[b[text()="Content ID: "]]/text()
       Tags:
-        Name: $videoItem/p/span[../b[text() = "Genre(s): "]]/a
-      URL: &url https://www.javdatabase.com/movies/{}/
-      Performers: &performers $videoItem/p/span[../b[text() = "Idol(s)/Actress(es): "]]/a
-      Details: &details /html/body/div[@id="page"]/div[@id="content"]/div[@id="primary"]/main/div[@class="entry-content"]/div[@class="movietable"]/div[3]/text()
+        Name: $videoItem/p/span[../b[text() = "Genre(s): "]]/a/@text
+        URL: $videoItem/p/span[../b[text() = "Genre(s): "]]/a/@href
+      URL: /html/head/link[@rel="canonical"]/@href
+      Performers:
+        Name: $videoItem/p/span[../b[text() = "Idol(s)/Actress(es): "]]/a/@text
+        URL: $videoItem/p/span[../b[text() = "Idol(s)/Actress(es): "]]/a/@href
+      Details: $videoDetailsItem/text()
