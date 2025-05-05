@@ -17,9 +17,9 @@ xPathScrapers:
       Date: &date $videoItem/p[b[text()="Release Date: "]]/text()
       Director: $videoItem/p/span[../b[text() = "Director: "]]/a /html/body/div[1]/div/div/main/div/div[1]/table/tbody/tr/td/div[1]/a/img
       Image: &image $videoPosterItem
-      Studio: &studio $videoPosterItem/p/span[../b[text() = "Studio: "]]/a
-        Name: *studio/@text
-        URL: *studio/@href
+      Studio: 
+        Name: $videoPosterItem/p/span[../b[text() = "Studio: "]]/a/@text
+        URL: $videoPosterItem/p/span[../b[text() = "Studio: "]]/a/@href
       Code: $videoItem/p[b[text()="Content ID: "]]/text()
       Tags:
         Name: $videoItem/p/span[../b[text() = "Genre(s): "]]/a
