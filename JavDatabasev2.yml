@@ -1,4 +1,21 @@
 name: JavDatabasev2
+sceneByURL:
+  - action: scrapeXPath
+    url:
+      - javdatabase.com
+    scraper: sceneScraper
+
+movieByURL:
+  - action: scrapeXPath
+    url:
+      - javdatabase.com
+    scraper: movieScraper
+
+performerByURL:
+  - action: scrapeXPath
+    url:
+      - javdatabase.com
+    scraper: performerScraper
 sceneByFragment:
   action: scrapeXPath
   queryURL: https://www.javdatabase.com/movies/{filename}/
@@ -14,19 +31,19 @@ xPathScrapers:
       $videoItem: /html/body/div[@id="page"]/div[@id="content"]/div[@id="primary"]/main/div[@class="entry-content"]/div[@class="movietable"]/div[@class="row"]/div[2]
       $videoDetailsItem: /html/body/div[@id="page"]/div[@id="content"]/div[@id="primary"]/main/div[@class="entry-content"]/div[@class="movietable"]/div[3]
     scene:
-      Title: $videoItem/p[b[text()="Title: "]]/text()
-      Date: $videoItem/p[b[text()="Release Date: "]]/text()
-      Director: $videoItem/p/span[../b[text() = "Director: "]]/a /html/body/div[1]/div/div/main/div/div[1]/table/tbody/tr/td/div[1]/a/img
+      Title: $videoItem/p[b[contains(.,'Title:')]]/text()
+      Date: $videoItem/p[b[contains(.,'Release Date:')]]/text()
+      Director: $videoItem/p/span[../b[contains(.,'Director:')"]]/a /html/body/div[1]/div/div/main/div/div[1]/table/tbody/tr/td/div[1]/a/img
       Image: $videoPosterItem
       Studio:
-        Name: $videoPosterItem/p/span[../b[text() = "Studio: "]]/a/@text
-        URL: $videoPosterItem/p/span[../b[text() = "Studio: "]]/a/@href
-      Code: $videoItem/p[b[text()="Content ID: "]]/text()
+        Name: $videoPosterItem/p/span[../b[contains(.,'Studio:')]]/a/@text
+        URL: $videoPosterItem/p/span[../b[contains(.,'Studio:')]]/a/@href
+      Code: $videoItem/p[b[contains(.,'Content ID:')]]/text()
       Tags:
-        Name: $videoItem/p/span[../b[text() = "Genre(s): "]]/a/@text
-        URL: $videoItem/p/span[../b[text() = "Genre(s): "]]/a/@href
+        Name: $videoItem/p/span[../b[contains(.,'Genre(s):')]]/a/@text
+        URL: $videoItem/p/span[../b[contains(.,'Genre(s):')]]/a/@href
       URL: /html/head/link[@rel="canonical"]/@href
       Performers:
-        Name: $videoItem/p/span[../b[text() = "Idol(s)/Actress(es): "]]/a/@text
-        URL: $videoItem/p/span[../b[text() = "Idol(s)/Actress(es): "]]/a/@href
+        Name: $videoItem/p/span[../b[contains(.,'Idol(s)/Actress(es):')]]/a/@text
+        URL: $videoItem/p/span[../b[contains(.,'Idol(s)/Actress(es):')]]/a/@href
       Details: $videoDetailsItem/text()
