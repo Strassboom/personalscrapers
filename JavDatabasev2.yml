@@ -1,4 +1,4 @@
-name: JAVDatabase
+name: JavDatabasev2
 sceneByFragment:
   action: scrapeXPath
   queryURL: https://www.javdatabase.com/movies/{filename}/
