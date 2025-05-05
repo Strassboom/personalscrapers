@@ -21,8 +21,8 @@ sceneByFragment:
   queryURL: https://www.javdatabase.com/movies/{filename}/
   queryURLReplace:
     filename:
-      - regex: \w+-\d+
-        with: $1
+      - regex: .*[\(|\s|\[](?=\w+-\d+)|(?<=\w+-\d+)[\)|\s|\]].*
+        with: ""
   scraper: sceneSearch
 xPathScrapers:
   sceneSearch:
